@@ -1,3 +1,5 @@
+from print_color import print as cprint
+
 class ToManyReqErrors(Exception):
     """Превышен лимит ошибок запросов в сеть подряд"""
 
@@ -5,19 +7,23 @@ class ToManyReqErrors(Exception):
         self.errors_count = errors_count
 
     def __str__(self):
-        return self.__doc__ + f' {self.errors_count}шт'
+        text = self.__doc__ + f' ({self.errors_count}шт.)'
+        cprint(text, tag=self.__class__.__name__, color='white', tag_color='red')
+        return ''
 
 
 class EmptyAdsLibResponse(Exception):
 
     def __str__(self):
-        return 'Empty payload'
-
+        text = 'Empty payload'
+        cprint(text, tag=self.__class__.__name__, color='white', tag_color='red')
+        return ''
 
 class LibEnds(Exception):
 
     def __str__(self):
-        return 'Библиотека закончилась (пустой forwardCursor)'
+        text = 'Библиотека закончилась (пустой forwardCursor)'
+        return ''
 
-
-raise EmptyAdsLibResponse
+if __name__ == '__main__':
+    raise EmptyAdsLibResponse

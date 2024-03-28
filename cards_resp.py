@@ -27,7 +27,7 @@ class FbCardsRes:
 
     def show_tokens(self):
 
-        print('forwardCursor', self.forward_cursor if len(self.forward_cursor) < 30 else self.forward_cursor[:30]+'...')
+        print('forwardCursor', self.forward_cursor if len(self.forward_cursor) < 33 else self.forward_cursor[:33]+'...')
         print('collationToken', self.collation_token)
 
     def __len__(self):

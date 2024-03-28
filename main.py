@@ -6,6 +6,7 @@ import urllib.parse
 from logger.logger import log_links, log_tokens, get_old_tokens
 from cards_resp import FbCardsRes, fb_responce_to_dict
 from fbadslib_url import get_random_url
+from exeptions import ToManyReqErrors
 
 proxies = {
     'https': 'http://CazGYr:naaRax3YR6ez@pproxy.space:17022/' # 1
@@ -84,7 +85,6 @@ url_string = str(url)
 print(url_string)
 param_string = url_string.split('?')[-1]
 param_string = param_string.replace('country', 'countries[0]')
-print(param_string)
 
 res = req.get(url_string, headers=headers,cookies=basic_cookies,timeout=REQ_TIMEOUT,**REQ_KWARGS)
 if res.status_code != 200:
@@ -129,6 +129,7 @@ collation_token = None
 
 SLEEP_TIME = 1
 REQUEST_COUNT = 0
+ERROR_REQ_IN_ROW = 5
 while True:
     sleep(SLEEP_TIME)
     if not forward_cursor:
@@ -137,7 +138,7 @@ while True:
     else:
         cards_url = f'https://www.facebook.com/ads/library/async/search_ads/?forward_cursor={forward_cursor}&backward_cursor=&session_id={basic_params["session_id"]}&collation_token={collation_token}&count=30&{param_string}'
     sleep_time = 5
-    for _ in range(5):
+    for _ in range(ERROR_REQ_IN_ROW):
         try:
             res = req.post(
                 cards_url,
@@ -164,15 +165,14 @@ while True:
             sleep(sleep_time)
             sleep_time += 5
     else:
-        print('5 error requests')
-        print(("*"*30 + "\n") * 5)
         print(url.country)
-        raise RequestException
+        print('REQUEST_COUNT:',REQUEST_COUNT)
+        raise ToManyReqErrors(ERROR_REQ_IN_ROW)
     #######
     with open('x.json', 'w') as file:
         file.write(res_text)
     REQUEST_COUNT += 1
-    print('REQUEST_COUNT',REQUEST_COUNT)
+    print('REQUEST_COUNT:',REQUEST_COUNT)
     cards_data = fb_responce_to_dict(res_text)
     cards_res = FbCardsRes(cards_data)
     log_links(cards_res)

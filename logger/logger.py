@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from print_color import print as cprint
 LOG_FILE = 'links.txt'
 
 def log_links(card_res):
@@ -8,15 +8,18 @@ def log_links(card_res):
     time_string = f'Time: {dt_string}'
     with open(LOG_FILE, 'a') as log_file:
         log_file.write(time_string + '\n')
-        # log_file.write(f'forward_cursor: {card_res.forward_cursor}\n')
-        # log_file.write(f'collation_token: {card_res.collation_token}\n')
         for card in card_res:
             #log_file.write(f'{card.fb_group_url}\n')
             log_file.write(f'{card.ad_archive_id} {card.page_name} {card.fb_group_url}\n')
         log_file.write('************\n')
-
+    if len(card_res) > 25:
+        color = 'green'
+    elif len(card_res) >= 10:
+        color = 'yellow'
+    else:
+        color = 'red'
     print(time_string)
-    print(f'Log {len(card_res)} links')
+    cprint(f'Log {len(card_res)} links '+ '#'*len(card_res), color=color)
 
 def log_tokens(a,b):
     with open('tokens.txt', 'w') as file:
