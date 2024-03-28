@@ -30,6 +30,7 @@ def get_old_tokens():
         return forward_cursor, collation_token
 
 def get_links_from_log_file():
+    links_count = 0
     with open('/home/vlad/DD/links.txt', 'w') as new_file:
         with open(LOG_FILE, ) as log_file:
             for line in log_file:
@@ -38,8 +39,10 @@ def get_links_from_log_file():
                     url = line[start:]
                     url = url.strip()
                     new_file.write(url + '\n')
+                    links_count += 1
                 except ValueError:
                     print(line)
+    print('Links Count', links_count)
 
 
 if __name__ == '__main__':

@@ -71,7 +71,6 @@ def get_basic_params(html):
             })
         except ValueError as error:
             raise ValueError(param_key, 'параметр не найден')
-    print(result)
     return result
 
 # GEO = input('Enter Geo: ')
@@ -138,6 +137,7 @@ while True:
     else:
         cards_url = f'https://www.facebook.com/ads/library/async/search_ads/?forward_cursor={forward_cursor}&backward_cursor=&session_id={basic_params["session_id"]}&collation_token={collation_token}&count=30&{param_string}'
     for _ in range(5):
+        sleep_time = 5
         try:
             res = req.post(
                 cards_url,
@@ -152,13 +152,17 @@ while True:
                 with open('error_not_200.json', 'w') as file:
                     file.write(res_text)
                 print('Responce not 200!')
-                sleep(5)
+                sleep(sleep_time)
+                sleep_time += 5
                 continue
             else:
+                sleep_time = 5
                 break
         except RequestException as error:
             print(error)
             print('Continue')
+            sleep(sleep_time)
+            sleep_time += 5
     else:
         print('5 error requests')
         print(("*"*30 + "\n") * 5)
