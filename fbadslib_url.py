@@ -1,6 +1,9 @@
 from datetime import datetime
 from datetime import timedelta
 from countries import countries
+from keywords import number_keywords
+import random as r
+
 
 class FbAdsLibUrl:
     URL = 'https://www.facebook.com/ads/library/'
@@ -34,12 +37,17 @@ class FbAdsLibUrl:
         if self.media_type not in FbAdsLibUrl.MEDIA_TYPES:
             raise ValueError('Incorrect mediaType param')
 
-
+def get_random_url():
+    c = countries.get_ramdom()
+    number_q = r.choice(number_keywords)
+    media_type = r.choice(list(FbAdsLibUrl.MEDIA_TYPES))
+    return FbAdsLibUrl(
+        country=c,
+        q=number_q,
+        media_type=media_type,
+    )
 
 if __name__ == '__main__':
-    print(countries)
-    c = countries['US']
-    q = '123'
-    url = FbAdsLibUrl(c,q=q, start_date='2024-03-27', media_type='video')
+    url = get_random_url()
     print(repr(url))
 

@@ -8,7 +8,7 @@ countries_data_file_path = os.path.join(curr_file_path, './countries.json')
 class Country:
 
     def __init__(self,* ,iso, name, population):
-        self.iso = iso
+        self.iso = iso.upper()
         self.name = name
         self.population = population
 
@@ -25,7 +25,7 @@ def load_countries():
     countries = dict()
     for iso_code, item in data.items():
         country = Country(iso=iso_code,**item)
-        countries[iso_code] = country
+        countries[iso_code.upper()] = country
     return countries
 
 class Countries:
@@ -38,7 +38,7 @@ class Countries:
             raise TypeError('Country id must be string type')
         if len(country_code) != 2:
             raise ValueError('Country code myst contain 2 chars')
-        country_code = country_code.lower()
+        country_code = country_code.upper()
         return self.data[country_code]
 
     def __len__(self):
