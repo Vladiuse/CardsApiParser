@@ -1,5 +1,6 @@
 from pprint import pprint
 import json
+from exeptions import *
 
 def fb_responce_to_dict(text):
     pos = text.index('{')
@@ -21,7 +22,7 @@ class FbCardsRes:
             return True
         with open('empty_res.json', 'w') as file:
             file.write(str(self.data))
-        raise ValueError('Пустой ответ')
+        raise EmptyAdsLibResponse
 
     def show_tokens(self):
 
@@ -54,7 +55,7 @@ class FbCardsRes:
     def forward_cursor(self):
         cursor = self.data['payload']['forwardCursor']
         if not cursor:
-            raise ValueError('Forward empy - либа закончилась')
+            raise LibEnds
         return cursor
 
     @property
