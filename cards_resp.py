@@ -19,6 +19,8 @@ class FbCardsRes:
     def _is_cards_exists(self):
         if self.data['payload']:
             return True
+        with open('empty_res.json', 'w') as file:
+            file.write(str(self.data))
         raise ValueError('Пустой ответ')
 
     def show_tokens(self):

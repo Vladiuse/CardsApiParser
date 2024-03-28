@@ -5,6 +5,7 @@ from urllib.parse import urlparse
 import urllib.parse
 from logger.logger import log_links, log_tokens, get_old_tokens
 from cards_resp import FbCardsRes, fb_responce_to_dict
+from fbadslib_url import get_random_url
 
 proxies = {
     'https': 'http://CazGYr:naaRax3YR6ez@pproxy.space:17022/' # 1
@@ -73,16 +74,20 @@ def get_basic_params(html):
     print(result)
     return result
 
-GEO = input('Enter Geo: ')
-if len(GEO) != 2:
-    raise ValueError('Incorrect geo len!')
-Q = urllib.parse.quote('coll some today')
-url = f'https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country={GEO}&q=*&sort_data[direction]=desc&sort_data[mode]=relevancy_monthly_grouped&start_date[min]=2024-02-29&start_date[max]=&search_type=keyword_unordered&media_type=all'
-param_string = url.split('?')[-1]
+# GEO = input('Enter Geo: ')
+# if len(GEO) != 2:
+#     raise ValueError('Incorrect geo len!')
+# Q = urllib.parse.quote('coll some today')
+# url = f'https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country={GEO}&q=*&sort_data[direction]=desc&sort_data[mode]=relevancy_monthly_grouped&start_date[min]=2024-02-29&start_date[max]=&search_type=keyword_unordered&media_type=all'
+url = get_random_url()
+print(repr(url))
+url_string = str(url)
+print(url_string)
+param_string = url_string.split('?')[-1]
 param_string = param_string.replace('country', 'countries[0]')
 print(param_string)
 
-res = req.get(url, headers=headers,cookies=basic_cookies,timeout=REQ_TIMEOUT,**REQ_KWARGS)
+res = req.get(url_string, headers=headers,cookies=basic_cookies,timeout=REQ_TIMEOUT,**REQ_KWARGS)
 if res.status_code != 200:
     print('Not 200 status code')
     raise ConnectionError
@@ -98,7 +103,7 @@ basic_cookies.update({
 headers.update(
     {
         'origin': 'https://www.facebook.com',
-        'referer': url,
+        'referer': url_string,
         'content-type': 'application/x-www-form-urlencoded'
     })
 
@@ -157,7 +162,7 @@ while True:
     else:
         print('5 error requests')
         print(("*"*30 + "\n") * 5)
-        print(GEO)
+        print(url.country)
         raise RequestException
     #######
     with open('x.json', 'w') as file:
