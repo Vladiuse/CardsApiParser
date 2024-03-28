@@ -136,8 +136,8 @@ while True:
         cards_url = f'https://www.facebook.com/ads/library/async/search_ads/?session_id={basic_params["session_id"]}&count=30&' + param_string
     else:
         cards_url = f'https://www.facebook.com/ads/library/async/search_ads/?forward_cursor={forward_cursor}&backward_cursor=&session_id={basic_params["session_id"]}&collation_token={collation_token}&count=30&{param_string}'
+    sleep_time = 5
     for _ in range(5):
-        sleep_time = 5
         try:
             res = req.post(
                 cards_url,

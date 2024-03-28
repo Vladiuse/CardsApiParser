@@ -22,6 +22,7 @@ class FbCardsRes:
             return True
         with open('empty_res.json', 'w') as file:
             file.write(str(self.data))
+        pprint(self.data)
         raise EmptyAdsLibResponse
 
     def show_tokens(self):
