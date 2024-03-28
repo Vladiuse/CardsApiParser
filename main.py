@@ -7,7 +7,10 @@ from logger.logger import log_links, log_tokens, get_old_tokens
 from cards_resp import FbCardsRes, fb_responce_to_dict
 from fbadslib_url import get_random_url
 from exeptions import ToManyReqErrors
+from funcs import Timer
 
+
+timer = Timer()
 proxies = {
     'https': 'http://CazGYr:naaRax3YR6ez@pproxy.space:17022/' # 1
 }
@@ -167,6 +170,7 @@ while True:
     else:
         print(url.country)
         print('REQUEST_COUNT:',REQUEST_COUNT)
+        print(timer.time_string)
         raise ToManyReqErrors(ERROR_REQ_IN_ROW)
     #######
     with open('x.json', 'w') as file:
@@ -178,7 +182,7 @@ while True:
     log_links(cards_res)
     # [print(card) for card in cards_res]
     cards_res.show_tokens()
-    print('*********************')
+    print('*********************\n')
     if REQUEST_COUNT == 1 and USE_OLD_TOKENS:
         print('Use old tokens')
         forward_cursor, collation_token = get_old_tokens()

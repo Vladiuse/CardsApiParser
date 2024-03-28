@@ -1,5 +1,5 @@
 from print_color import print as cprint
-
+from pprint import pprint
 class ToManyReqErrors(Exception):
     """Превышен лимит ошибок запросов в сеть подряд"""
 
@@ -14,7 +14,12 @@ class ToManyReqErrors(Exception):
 
 class EmptyAdsLibResponse(Exception):
 
+    def __init__(self, data=None):
+        self.data = data
+
     def __str__(self):
+        if self.data:
+            pprint(self.data)
         text = 'Empty payload'
         cprint(text, tag=self.__class__.__name__, color='white', tag_color='red')
         return ''
