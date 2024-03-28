@@ -1,11 +1,9 @@
 from time import sleep
 import requests as req
 from requests.exceptions import RequestException
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse
 import urllib.parse
-from pprint import pprint
-import json
-from logger import log_links, log_tokens, get_old_tokens
+from logger.logger import log_links, log_tokens, get_old_tokens
 from cards_resp import FbCardsRes, fb_responce_to_dict
 
 proxies = {
