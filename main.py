@@ -1,4 +1,4 @@
-from time import sleep
+from funcs import sleep
 import requests as req
 from requests.exceptions import RequestException
 from urllib.parse import urlparse
@@ -168,6 +168,7 @@ while True:
             sleep(sleep_time)
             sleep_time += 5
     else:
+        print('\n'*9)
         print(url.country)
         print('REQUEST_COUNT:',REQUEST_COUNT)
         print(timer.time_string)
@@ -177,6 +178,7 @@ while True:
         file.write(res_text)
     REQUEST_COUNT += 1
     print('REQUEST_COUNT:',REQUEST_COUNT)
+    print(url.country)
     cards_data = fb_responce_to_dict(res_text)
     cards_res = FbCardsRes(cards_data)
     log_links(cards_res)
