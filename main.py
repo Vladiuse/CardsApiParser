@@ -134,7 +134,7 @@ SLEEP_TIME = 1
 REQUEST_COUNT = 0
 ERROR_REQ_IN_ROW = 5
 while True:
-    sleep(SLEEP_TIME)
+    sleep(SLEEP_TIME, show=False)
     if not forward_cursor:
         print('First req without tokens')
         cards_url = f'https://www.facebook.com/ads/library/async/search_ads/?session_id={basic_params["session_id"]}&count=30&' + param_string

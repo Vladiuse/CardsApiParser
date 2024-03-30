@@ -1,6 +1,6 @@
 from print_color import print as cprint
 from funcs import Timer
-LOG_FILE = 'links.txt'
+LOG_FILE = '/home/vlad/adslib_links/links.txt'
 
 
 timer = Timer()
