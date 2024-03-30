@@ -20,7 +20,7 @@ class FbAdsLibUrl:
         self.media_type = media_type if media_type else 'all'
 
     def __str__(self):
-        params =  f'active_status=all&ad_type=all&country={self._country.iso}&q={self.q}&publisher_platforms[0]=facebook&sort_data[direction]=desc&sort_data[mode]=relevancy_monthly_grouped&start_date[min]={self.start_date}&start_date[max]=&search_type=keyword_unordered&media_type={self.media_type}'
+        params =  f'active_status=all&ad_type=all&countries[0]={self._country.iso}&q={self.q}&publisher_platforms[0]=facebook&sort_data[direction]=desc&sort_data[mode]=relevancy_monthly_grouped&start_date[min]={self.start_date}&start_date[max]=&search_type=keyword_unordered&media_type={self.media_type}'
         return FbAdsLibUrl.URL + '?'+ params
 
     def __repr__(self):
@@ -31,6 +31,9 @@ class FbAdsLibUrl:
         print(f'MediaType: {self.media_type}')
         return '\n'
 
+    @property
+    def param_string(self):
+        return str(self).split('?')[-1]
     @property
     def country(self):
         return self._country
