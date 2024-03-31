@@ -1,13 +1,11 @@
 from funcs import sleep
 import requests as req
 from requests.exceptions import RequestException
-from urllib.parse import urlparse
-import urllib.parse
-
 from cards_resp import FbCardsRes, fb_responce_to_dict
-from fbadslib_url import get_random_url, FbAdsLibUrl
+from fbadslib_url import  FbAdsLibUrl
 from exeptions import ToManyReqErrors
-from funcs import Timer
+from funcs import Timer, check_proxy
+
 
 
 timer = Timer()
@@ -21,6 +19,7 @@ SLEEP_TIME = 1
 ERROR_REQ_IN_ROW = 5
 
 if USE_PROXY:
+    check_proxy(proxies)
     REQ_KWARGS = {
         'proxies': proxies
     }
@@ -101,7 +100,7 @@ class FbAdsLibPage:
             raise ConnectionError
 
         html = res.text
-        with open('x.html', 'w') as file:
+        with open('z_work/x.html', 'w') as file:
             file.write(html)
         self.basic_params = self.get_basic_params(html)
         self.cookies.update({
@@ -173,7 +172,7 @@ class FbAdsLibPage:
                 print(timer.time_string)
                 raise ToManyReqErrors(ERROR_REQ_IN_ROW)
             #######
-            with open('x.json', 'w') as file:
+            with open('z_work/x.json', 'w') as file:
                 file.write(res_text)
             self.REQUEST_COUNT += 1
             print('REQUEST_COUNT:', self.REQUEST_COUNT)

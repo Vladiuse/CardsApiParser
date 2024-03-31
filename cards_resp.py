@@ -98,7 +98,7 @@ class Card:
 
 
 if __name__ == '__main__':
-    with open('x.json') as file:
+    with open('z_work/x.json') as file:
         text = file.read()
         data = fb_responce_to_dict(text)
 

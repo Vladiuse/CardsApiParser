@@ -2,9 +2,9 @@ from fbadslib_url import get_random_url
 from fbadslib_page import FbAdsLibPage
 from logger.logger import log_links, log_tokens, get_old_tokens
 from exeptions import *
-from funcs import Timer
+from funcs import Timer, check_network
 
-
+check_network()
 timer = Timer()
 def parse_lib_page():
     url = get_random_url()
