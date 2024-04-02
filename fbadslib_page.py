@@ -9,8 +9,11 @@ from funcs import Timer, check_proxy
 
 
 timer = Timer()
+p1 = 'http://CazGYr:naaRax3YR6ez@pproxy.space:17022/'
+p5 = 'http://eZ2nuS:Fyd7uG1Tad8g@nproxy.site:14467/'
+p6 = 'http://asaREZ:ed5CUp6eHpYP@cproxy.site:17363/'
 proxies = {
-    'https': 'http://CazGYr:naaRax3YR6ez@pproxy.space:17022/' # 1
+    'https': p1 # 1
 }
 REQ_TIMEOUT = 30
 USE_PROXY = True
