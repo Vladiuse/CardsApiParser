@@ -45,7 +45,7 @@ class FbAdsLibUrl:
             raise ValueError('Incorrect mediaType param')
 
 def get_random_url():
-    c = countries.get_ramdom()
+    c = countries.get_random()
     q = get_random_keyword()
     media_type = r.choice(['video', 'image'])
     return FbAdsLibUrl(

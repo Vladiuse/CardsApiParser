@@ -5,18 +5,18 @@ import random as r
 
 curr_file_path = Path(__file__).parent.absolute()
 countries_data_file_path = os.path.join(curr_file_path, './countries.json')
+
+
 class Country:
 
-    def __init__(self,* ,iso, name, population):
+    def __init__(self, *, iso, ru_name, population, parse_population_conf):
         self.iso = iso.upper()
-        self.name = name
+        self.name = ru_name
         self.population = population
+        self.parse_population_conf = parse_population_conf
 
     def __str__(self):
         return f'({self.iso}) {self.name}'
-
-
-
 
 
 def load_countries():
@@ -24,9 +24,10 @@ def load_countries():
         data = json.load(file)
     countries = dict()
     for iso_code, item in data.items():
-        country = Country(iso=iso_code,**item)
+        country = Country(iso=iso_code, **item)
         countries[iso_code.upper()] = country
     return countries
+
 
 class Countries:
 
@@ -46,7 +47,7 @@ class Countries:
 
     def __iter__(self):
         self.i = 0
-        self._keys  = list(self.data.keys())
+        self._keys = list(self.data.keys())
         return self
 
     def __next__(self):
@@ -58,18 +59,30 @@ class Countries:
         except IndexError:
             raise StopIteration
 
+    def get_random(self):
+        """Получить рандомную страну с учетом весового коофициента"""
+        countries_iso = [c.iso for c in self]
+        parse_population_conf = [c.parse_population_conf for c in self]
+        random_country_code = r.choices(population=countries_iso, weights=parse_population_conf, k=1)[0]
+        return self[random_country_code]
 
-    def get_ramdom(self):
-        keys = list(self.data.keys())
-        random_key = r.choice(keys)
-        return self[random_key]
 
 countries = Countries()
 
 if __name__ == '__main__':
+    results = {}
+    for _ in range(100000):
+        c = countries.get_random()
+        try:
+            results[c.iso] += 1
+        except KeyError:
+            results[c.iso] = 1
 
-    c = countries.get_ramdom()
-    print(c)
-
-
-
+    print(results)
+    res_list = []
+    for iso, count in results.items():
+        res_list.append([iso, count])
+    res_list.sort(key=lambda item: item[1], reverse=True)
+    print(res_list)
+    for iso, count in res_list:
+        print(iso, '\t', count)
