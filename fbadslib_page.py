@@ -94,7 +94,12 @@ class FbAdsLibPage:
         print(repr(self.url))
         url_string = str(self.url)
         print(url_string)
-        res = req.get(url_string, headers=self.headers, cookies=self.basic_cookies, timeout=REQ_TIMEOUT, **REQ_KWARGS)
+        res = req.get(url_string,
+                      headers=self.headers,
+                      cookies=self.basic_cookies,
+                      timeout=REQ_TIMEOUT,
+                      **REQ_KWARGS,
+                      )
         if res.status_code != 200:
             print('Not 200 status code')
             raise ConnectionError
@@ -150,16 +155,15 @@ class FbAdsLibPage:
                         **REQ_KWARGS,
                     )
                     res_text = res.text
-                    if not res.status_code == 200:
-                        with open('error_not_200.json', 'w') as file:
-                            file.write(res_text)
-                        print('Responce not 200!')
-                        sleep(sleep_time)
-                        sleep_time += 5
-                        continue
-                    else:
-                        sleep_time = 5
-                        break
+                    res.raise_for_status()
+                    sleep_time = 5
+                    break
+                except req.exceptions.HTTPError as error:
+                    with open('error_not_200.json', 'w') as file:
+                        file.write(res_text)
+                    print(f'Responce not 200!', error)
+                    sleep(sleep_time)
+                    sleep_time += 5
                 except RequestException as error:
                     print(error)
                     print('Continue')

@@ -1,1 +1,1 @@
-from .main import number_keywords
+from .main import number_keywords, get_random_keyword

@@ -1,7 +1,7 @@
 from datetime import datetime
 from datetime import timedelta
 from countries import countries
-from keywords import number_keywords
+from keywords import number_keywords, get_random_keyword
 import random as r
 
 
@@ -46,11 +46,11 @@ class FbAdsLibUrl:
 
 def get_random_url():
     c = countries.get_ramdom()
-    number_q = r.choice(number_keywords)
+    q = get_random_keyword()
     media_type = r.choice(['video', 'image'])
     return FbAdsLibUrl(
         country=c,
-        q=number_q,
+        q=q,
         media_type=media_type,
         start_date='2024-01-01'
     )
