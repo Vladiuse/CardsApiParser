@@ -162,7 +162,7 @@ class FbAdsLibPage:
                     sleep_time = 5
                     break
                 except req.exceptions.HTTPError as error:
-                    with open('error_not_200.json', 'w') as file:
+                    with open('logs/error_not_200.json', 'w') as file:
                         file.write(res_text)
                     print(f'Responce not 200!', error)
                     sleep(sleep_time)
