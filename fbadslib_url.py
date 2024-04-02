@@ -12,15 +12,21 @@ class FbAdsLibUrl:
         'image',
         'video',
     }
+    ACTIVE_STATUS_TYPES = {
+        'all',
+        'active',
+        'inactive',
+    }
 
-    def __init__(self, country, q, start_date=None, media_type=None):
+    def __init__(self, country, q, start_date=None, media_type=None, active_status=None):
         self._country = country
         self.q = q
         self.start_date = start_date if start_date else str(datetime.now().date() - timedelta(days=1))
         self.media_type = media_type if media_type else 'all'
+        self.active_status = active_status if active_status else 'all'
 
     def __str__(self):
-        params =  f'active_status=all&ad_type=all&countries[0]={self._country.iso}&q={self.q}&publisher_platforms[0]=facebook&sort_data[direction]=desc&sort_data[mode]=relevancy_monthly_grouped&start_date[min]={self.start_date}&start_date[max]=&search_type=keyword_unordered&media_type={self.media_type}'
+        params =  f'active_status={self.active_status}&ad_type=all&countries[0]={self._country.iso}&q={self.q}&publisher_platforms[0]=facebook&sort_data[direction]=desc&sort_data[mode]=relevancy_monthly_grouped&start_date[min]={self.start_date}&start_date[max]=&search_type=keyword_unordered&media_type={self.media_type}'
         return FbAdsLibUrl.URL + '?'+ params
 
     def __repr__(self):
@@ -34,6 +40,7 @@ class FbAdsLibUrl:
     @property
     def param_string(self):
         return str(self).split('?')[-1]
+
     @property
     def country(self):
         return self._country
@@ -44,15 +51,21 @@ class FbAdsLibUrl:
         if self.media_type not in FbAdsLibUrl.MEDIA_TYPES:
             raise ValueError('Incorrect mediaType param')
 
+    def _check_active_status(self):
+        if self.active_status not in FbAdsLibUrl.ACTIVE_STATUS_TYPES:
+            raise ValueError('Incorrect active status')
+
 def get_random_url():
     c = countries.get_random()
     q = get_random_keyword()
+    active_status = r.choice(['active', 'inactive'])
     media_type = r.choice(['video', 'image'])
     return FbAdsLibUrl(
         country=c,
         q=q,
         media_type=media_type,
-        start_date='2024-01-01'
+        start_date='2024-01-01',
+        active_status=active_status,
     )
 
 if __name__ == '__main__':
