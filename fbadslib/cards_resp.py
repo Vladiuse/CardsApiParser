@@ -20,7 +20,7 @@ class FbCardsRes:
     def _is_cards_exists(self):
         if self.data['payload']:
             return True
-        with open('logs/empty_res.json', 'w') as file:
+        with open('../logs/empty_res.json', 'w') as file:
             file.write(str(self.data))
         pprint(self.data)
         raise EmptyAdsLibResponse
@@ -98,7 +98,7 @@ class Card:
 
 
 if __name__ == '__main__':
-    with open('z_work/x.json') as file:
+    with open('../z_work/x.json') as file:
         text = file.read()
         data = fb_responce_to_dict(text)
 

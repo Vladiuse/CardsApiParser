@@ -1,8 +1,10 @@
+import os
+
 from funcs import sleep
 import requests as req
 from requests.exceptions import RequestException
-from cards_resp import FbCardsRes, fb_responce_to_dict
-from fbadslib_url import  FbAdsLibUrl
+from fbadslib.cards_resp import FbCardsRes, fb_responce_to_dict
+from fbadslib.fbadslib_url import  FbAdsLibUrl
 from exeptions import ToManyReqErrors
 from funcs import Timer, check_proxy
 
@@ -108,7 +110,7 @@ class FbAdsLibPage:
             raise ConnectionError
 
         html = res.text
-        with open('z_work/x.html', 'w') as file:
+        with open('./z_work/x.html', 'w') as file:
             file.write(html)
         self.basic_params = self.get_basic_params(html)
         self.cookies.update({
@@ -162,7 +164,7 @@ class FbAdsLibPage:
                     sleep_time = 5
                     break
                 except req.exceptions.HTTPError as error:
-                    with open('logs/error_not_200.json', 'w') as file:
+                    with open('../logs/error_not_200.json', 'w') as file:
                         file.write(res_text)
                     print(f'Responce not 200! ({res.status_code})')
                     sleep(sleep_time)
@@ -179,7 +181,7 @@ class FbAdsLibPage:
                 print(timer.time_string)
                 raise ToManyReqErrors(ERROR_REQ_IN_ROW)
             #######
-            with open('z_work/x.json', 'w') as file:
+            with open('./z_work/x.json', 'w') as file:
                 file.write(res_text)
             self.REQUEST_COUNT += 1
             print('REQUEST_COUNT:', self.REQUEST_COUNT)
