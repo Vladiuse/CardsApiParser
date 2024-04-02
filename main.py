@@ -6,21 +6,29 @@ from funcs import Timer, check_network
 
 check_network()
 timer = Timer()
-def parse_lib_page():
-    url = get_random_url()
-    fbadslib_page = FbAdsLibPage(url)
-    fbadslib_page.open()
-    for cards in fbadslib_page.parse_cards():
-        log_links(cards)
-        print('*********************\n')
 
 
+class FbAdsLibParser():
 
-def infy_parse():
-    while True:
-        try:
-            parse_lib_page()
-        except (LibEnds,ToManyReqErrors) as error:
-            print(error)
+    def __init__(self):
+        self.parsed_pages_count = 0
 
-infy_parse()
+    def _parse_lib_page(self):
+        url = get_random_url()
+        fbadslib_page = FbAdsLibPage(url)
+        fbadslib_page.open()
+        for cards in fbadslib_page.parse_cards():
+            log_links(cards)
+            print('*********************\n')
+
+    def parse_lib(self):
+        while True:
+            try:
+                self.parsed_pages_count += 1
+                self._parse_lib_page()
+            except (LibEnds, ToManyReqErrors) as error:
+                print(error)
+
+
+parser = FbAdsLibParser()
+parser.parse_lib()
