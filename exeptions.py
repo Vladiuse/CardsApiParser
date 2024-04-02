@@ -18,8 +18,12 @@ class EmptyAdsLibResponse(Exception):
         self.data = data
 
     def __str__(self):
-        if self.data:
-            pprint(self.data)
+        for key in ('errorSummary', 'errorDescription'):
+            try:
+                text = self.data[key]
+                cprint(text, tag=key, color='white', tag_color='red')
+            except KeyError:
+                pass
         text = 'Empty payload'
         cprint(text, tag=self.__class__.__name__, color='white', tag_color='red')
         return ''
@@ -28,7 +32,8 @@ class LibEnds(Exception):
 
     def __str__(self):
         text = 'Библиотека закончилась (пустой forwardCursor)'
+        cprint(text, tag=self.__class__.__name__, color='white', tag_color='red')
         return ''
 
 if __name__ == '__main__':
-    raise EmptyAdsLibResponse
+    raise LibEnds
