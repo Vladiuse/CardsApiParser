@@ -8,8 +8,8 @@ def log_links(card_res):
     with open(LOG_FILE, 'a') as log_file:
         log_file.write(timer.time_string + '\n')
         for card in card_res:
-            #log_file.write(f'{card.fb_group_url}\n')
-            log_file.write(f'{card.ad_archive_id} {card.page_name} {card.fb_group_url}\n')
+            log_file.write(f'{card.fb_group_url}\n')
+            #log_file.write(f'{card.ad_archive_id} {card.page_name} {card.fb_group_url}\n')
         log_file.write('************\n')
     if len(card_res) > 25:
         color = 'green'
