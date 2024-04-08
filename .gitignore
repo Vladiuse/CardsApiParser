@@ -1,0 +1,5 @@
+conf.ini
+.venv
+*.pyc
+
+
