@@ -97,7 +97,7 @@ class FbAdsLibPage:
             raise ConnectionError
 
         html = res.text
-        with open('./z_work/x.html', 'w') as file:
+        with open('./z_work/x.html', 'w', encoding='utf-8') as file:
             file.write(html)
         self.basic_params = self.get_basic_params(html)
         self.cookies.update({
@@ -152,7 +152,7 @@ class FbAdsLibPage:
                     sleep(SLEEP_BETWEEN_REQS, show=False)
                     break
                 except req.exceptions.HTTPError as error:
-                    with open('./logs/error_not_200.json', 'w') as file:
+                    with open('./logs/error_not_200.json', 'w', encoding='utf-8') as file:
                         file.write(res_text)
                     print(f'Responce not 200! ({res.status_code})')
                     sleep(sleep_time)
