@@ -6,7 +6,7 @@ timer = Timer()
 
 
 def log_links(card_res):
-    with open(LOG_FILE_PATH, 'a') as log_file:
+    with open(LOG_FILE_PATH, 'a', encoding='utf-8') as log_file:
         log_file.write(timer.time_string + '\n')
         for card in card_res:
             log_file.write(f'{card.fb_group_url}\n')
