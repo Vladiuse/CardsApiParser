@@ -12,25 +12,6 @@ from config.settings import REQ_ERRORS_ROW_COUNT, REQ_TIMEOUT, SLEEP_BETWEEN_REQ
 
 
 timer = Timer()
-p1 = 'http://CazGYr:naaRax3YR6ez@pproxy.space:17022/'
-p2 = 'http://yp4ybA:TuqCAaUK9VeC@nproxy.site:16702/'
-p3 = 'http://Aden3H:yRceHTyH6YDF@jproxy.site:15722/'
-p4 = 'http://eHyckE:mEkMAV3yg6tU@pproxy.space:14953/'
-p5 = 'http://eZ2nuS:Fyd7uG1Tad8g@nproxy.site:14467/'
-p6 = 'http://asaREZ:ed5CUp6eHpYP@cproxy.site:17363/'
-p9 = 'http://h5KbhB:ycPvqY3RVdUG@pproxy.space:15418/'
-proxies = {
-    'https': p9
-}
-USE_PROXY = True
-
-if USE_PROXY:
-    check_proxy(proxies)
-    REQ_KWARGS = {
-        'proxies': proxies
-    }
-else:
-    REQ_KWARGS = {}
 
 class FbAdsLibPage:
     basic_cookies = {
@@ -59,8 +40,9 @@ class FbAdsLibPage:
         'viewport-width': '1920',
     }
 
-    def __init__(self, url:FbAdsLibUrl):
+    def __init__(self, url:FbAdsLibUrl, proxy=None):
         self.url = url
+        self.proxy = proxy
         self.headers = FbAdsLibPage.basic_headers.copy()
         self.cookies = FbAdsLibPage.basic_cookies.copy()
         self.basic_params  = None
@@ -68,6 +50,10 @@ class FbAdsLibPage:
         self.forward_cursor = None
         self.collation_token = None
         self.REQUEST_COUNT = 0
+
+        self.REQ_KWARGS = {
+            'proxies': { 'https': self.proxy.url}
+        } if self.proxy else {}
 
     @staticmethod
     def get_basic_params(html):
@@ -104,7 +90,7 @@ class FbAdsLibPage:
                       headers=self.headers,
                       cookies=self.basic_cookies,
                       timeout=REQ_TIMEOUT,
-                      **REQ_KWARGS,
+                      **self.REQ_KWARGS,
                       )
         if res.status_code != 200:
             print('Not 200 status code')
@@ -158,7 +144,7 @@ class FbAdsLibPage:
                         data=self.data,
                         cookies=self.cookies,
                         timeout=REQ_TIMEOUT,
-                        **REQ_KWARGS,
+                        **self.REQ_KWARGS,
                     )
                     res_text = res.text
                     res.raise_for_status()

@@ -8,8 +8,11 @@ def check_network():
     except RequestException:
         raise ConnectionError('Интернет не работает')
 
-def check_proxy(proxies:dict):
+def check_proxy(proxy):
     get_ip_url = 'https://api.ipify.org?format=json'
+    proxies = {
+        'https': proxy.url
+    }
     try:
         res = req.get(get_ip_url, proxies=proxies)
         if res.status_code != 200:
@@ -23,8 +26,6 @@ def check_proxy(proxies:dict):
 
 
 if __name__ == '__main__':
-    proxies = {
-        'https': 'http://CazGYr:naaRax3YR6ez@pproxy.space:17022/'  # 1
-    }
+    url= 'http://CazGYr:naaRax3YR6ez@pproxy.space:17022/'
 
-    check_proxy(proxies)
+    check_proxy(url)

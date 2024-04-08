@@ -6,12 +6,13 @@ from exeptions import *
 
 class FbAdsLibParser:
 
-    def __init__(self):
+    def __init__(self, proxy=None):
+        self.proxy=proxy
         self.parsed_pages_count = 0
 
     def _parse_lib_page(self):
         url = get_random_url()
-        fbadslib_page = FbAdsLibPage(url)
+        fbadslib_page = FbAdsLibPage(url, self.proxy)
         fbadslib_page.open()
         for cards in fbadslib_page.parse_cards():
             log_links(cards)
@@ -24,6 +25,12 @@ class FbAdsLibParser:
                 self._parse_lib_page()
             except (LibEnds, ToManyReqErrors) as error:
                 print(error)
+            except EmptyAdsLibResponse as error:
+                if self.proxy:
+                    self.proxy.change_ip()
+                else:
+                    raise error
+
 
 
 if __name__ == '__main__':
