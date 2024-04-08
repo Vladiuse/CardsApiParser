@@ -1,6 +1,6 @@
 from fbadslib.fbadslib_url import get_random_url
 from fbadslib.fbadslib_page import FbAdsLibPage
-from logger.logger import log_links, log_tokens, get_old_tokens
+from logger.logger import log_links
 from exeptions import *
 
 

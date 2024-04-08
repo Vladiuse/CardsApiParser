@@ -20,10 +20,9 @@ class FbCardsRes:
     def _is_cards_exists(self):
         if self.data['payload']:
             return True
-        with open('../logs/empty_res.json', 'w') as file:
+        with open('./logs/empty_res.json', 'w') as file:
             file.write(str(self.data))
-        pprint(self.data)
-        raise EmptyAdsLibResponse
+        raise EmptyAdsLibResponse(self.data)
 
     def show_tokens(self):
 

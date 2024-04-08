@@ -7,21 +7,22 @@ from fbadslib.cards_resp import FbCardsRes, fb_responce_to_dict
 from fbadslib.fbadslib_url import  FbAdsLibUrl
 from exeptions import ToManyReqErrors
 from funcs import Timer, check_proxy
+from config.settings import REQ_ERRORS_ROW_COUNT, REQ_TIMEOUT, SLEEP_BETWEEN_REQS
 
 
 
 timer = Timer()
 p1 = 'http://CazGYr:naaRax3YR6ez@pproxy.space:17022/'
+p2 = 'http://yp4ybA:TuqCAaUK9VeC@nproxy.site:16702/'
+p3 = 'http://Aden3H:yRceHTyH6YDF@jproxy.site:15722/'
+p4 = 'http://eHyckE:mEkMAV3yg6tU@pproxy.space:14953/'
 p5 = 'http://eZ2nuS:Fyd7uG1Tad8g@nproxy.site:14467/'
 p6 = 'http://asaREZ:ed5CUp6eHpYP@cproxy.site:17363/'
+p9 = 'http://h5KbhB:ycPvqY3RVdUG@pproxy.space:15418/'
 proxies = {
-    'https': p1 # 1
+    'https': p9
 }
-REQ_TIMEOUT = 30
 USE_PROXY = True
-SLEEP_TIME = 1
-
-ERROR_REQ_IN_ROW = 5
 
 if USE_PROXY:
     check_proxy(proxies)
@@ -142,14 +143,14 @@ class FbAdsLibPage:
     def parse_cards(self):
         self.REQUEST_COUNT = 0
         while True:
-            sleep(SLEEP_TIME, show=False)
+            sleep(SLEEP_BETWEEN_REQS, show=False)
             if not self.forward_cursor:
                 print('First req without tokens')
                 cards_url = f'https://www.facebook.com/ads/library/async/search_ads/?session_id={self.basic_params["session_id"]}&count=30&' + self.url.param_string
             else:
                 cards_url = f'https://www.facebook.com/ads/library/async/search_ads/?forward_cursor={self.forward_cursor}&backward_cursor=&session_id={self.basic_params["session_id"]}&collation_token={self.collation_token}&count=30&{self.url.param_string}'
             sleep_time = 5
-            for _ in range(ERROR_REQ_IN_ROW):
+            for _ in range(REQ_ERRORS_ROW_COUNT):
                 try:
                     res = req.post(
                         cards_url,
@@ -162,9 +163,10 @@ class FbAdsLibPage:
                     res_text = res.text
                     res.raise_for_status()
                     sleep_time = 5
+                    sleep(SLEEP_BETWEEN_REQS, show=False)
                     break
                 except req.exceptions.HTTPError as error:
-                    with open('../logs/error_not_200.json', 'w') as file:
+                    with open('./logs/error_not_200.json', 'w') as file:
                         file.write(res_text)
                     print(f'Responce not 200! ({res.status_code})')
                     sleep(sleep_time)
@@ -179,7 +181,7 @@ class FbAdsLibPage:
                 print(self.url.country)
                 print('REQUEST_COUNT:',self.REQUEST_COUNT)
                 print(timer.time_string)
-                raise ToManyReqErrors(ERROR_REQ_IN_ROW)
+                raise ToManyReqErrors
             #######
             with open('./z_work/x.json', 'w') as file:
                 file.write(res_text)
@@ -191,6 +193,7 @@ class FbAdsLibPage:
             self.forward_cursor = cards_res.forward_cursor
             self.collation_token = cards_res.collation_token
             yield cards_res
+
 
 
 
