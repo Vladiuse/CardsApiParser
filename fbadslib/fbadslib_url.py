@@ -60,7 +60,7 @@ class FbAdsLibUrl:
 def get_random_url():
     c = countries.get_random()
     q = get_random_keyword()
-    active_status = r.choice(['active', 'inactive'])
+    active_status = 'active'
     media_type = r.choice(['video', 'image'])
     return FbAdsLibUrl(
         country=c,
