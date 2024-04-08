@@ -15,6 +15,7 @@ args = parser.parse_args()
 proxy = None
 if args.proxy:
     proxy = get_proxy_from_conf(args.proxy)
+    print(repr(proxy))
     check_proxy(proxy)
 
 parser = FbAdsLibParser(proxy)

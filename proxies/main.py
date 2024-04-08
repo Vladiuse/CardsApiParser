@@ -1,5 +1,6 @@
 import requests as req
 from requests.exceptions import RequestException
+from funcs import sleep
 
 class Proxy:
 
@@ -18,6 +19,7 @@ class Proxy:
                 res = req.get(self._change_ip_url, timeout=30)
                 if res.status_code == 200:
                     print(res.text)
+                    sleep(60)
                     break
                 else:
                     print('Change ip res not 200!', res.status_code)
