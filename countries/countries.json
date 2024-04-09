@@ -872,13 +872,13 @@
             {
                 "name": "Мерянский",
                 "iso": "me",
-                "weight": 1,
+                "weight": 0,
                 "keys_deep": null
             },
             {
                 "name": "Сербский",
                 "iso": "sr",
-                "weight": 0,
+                "weight": 1,
                 "keys_deep": null
             }
         ]
@@ -1052,7 +1052,7 @@
         "languages": [
             {
                 "name": "Филиппинский",
-                "iso": "ph",
+                "iso": "tl",
                 "weight": 1,
                 "keys_deep": null
             }

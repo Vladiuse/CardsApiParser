@@ -16,8 +16,11 @@ class Country:
         self.parse_population_conf = parse_population_conf
         self.languages = [self._dict_to_langs_class(item) for item in languages]
 
-    def __str__(self):
+    def __repr__(self):
         return f'({self.iso}) {self.name}'
+
+    def __str__(self):
+        return self.iso.upper()
 
     @staticmethod
     def _dict_to_langs_class(dict):
@@ -25,6 +28,7 @@ class Country:
         return lang
 
     def get_random_lang(self):
+        """Получить рандомный язык у страны с учетом весового коофициента"""
         population = [lang.iso for lang in self.languages]
         weights = [lang.weight for lang in self.languages]
         lang_iso = r.choices(population=population, weights=weights)[0]

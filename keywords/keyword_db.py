@@ -14,6 +14,7 @@ class KeyWord:
 
     def __str__(self):
         return self.word
+
 class KeyWordDB:
 
     def __init__(self):
@@ -31,9 +32,14 @@ class KeyWordDB:
         command = f"SELECT * FROM keyword WHERE number_in_dict BETWEEN {start} AND {end} AND language = '{language_code}' ORDER BY RANDOM() LIMIT 1"
         cursor.execute(command)
         row = cursor.fetchone()
-        pk, word, lang, number_in_dict = row
-        keyword = KeyWord(word, number_in_dict, lang)
-        return keyword
+        try:
+            pk, word, lang, number_in_dict = row
+            keyword = KeyWord(word, number_in_dict, lang)
+            return keyword
+        except TypeError as error:
+            print(error)
+            print(language_code, range)
+            raise error
 
     def keys_stat(self):
         con = sqlite3.connect(self.db_path)
@@ -46,3 +52,5 @@ class KeyWordDB:
         for row in rows:
             lang, count = row
             print(lang, count)
+
+keyword_db = KeyWordDB()
