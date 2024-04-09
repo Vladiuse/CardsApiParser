@@ -173,7 +173,7 @@ class FbAdsLibPage:
                 file.write(res_text)
             self.REQUEST_COUNT += 1
             print('REQUEST_COUNT:', self.REQUEST_COUNT)
-            print(self.url.country)
+            print(repr(self.url.country))
             cards_data = fb_responce_to_dict(res_text)
             cards_res = FbCardsRes(cards_data)
             yield cards_res
