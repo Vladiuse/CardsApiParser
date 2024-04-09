@@ -81,7 +81,7 @@ def get_random_keyword_url():
     lang = c.get_random_lang()
     q = keyword_db.get_random_key(lang.iso, (1, 500))
     active_status = 'active'
-    media_type = r.choice(['video', 'image'])
+    media_type = 'all' #r.choice(['video', 'image'])
     url = FbAdsLibUrl(
         country=c,
         q=q,
