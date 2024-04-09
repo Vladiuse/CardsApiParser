@@ -28,6 +28,11 @@ def load_countries():
         countries[iso_code.upper()] = country
     return countries
 
+class Language:
+
+    def __init__(self, languale_name):
+        self.languale_name = languale_name
+
 
 class Countries:
 
