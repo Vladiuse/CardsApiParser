@@ -176,8 +176,6 @@ class FbAdsLibPage:
             print(self.url.country)
             cards_data = fb_responce_to_dict(res_text)
             cards_res = FbCardsRes(cards_data)
-            self.forward_cursor = cards_res.forward_cursor
-            self.collation_token = cards_res.collation_token
             yield cards_res
 
 

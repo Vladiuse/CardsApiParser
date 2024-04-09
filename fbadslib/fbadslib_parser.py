@@ -1,4 +1,4 @@
-from fbadslib.fbadslib_url import get_random_url
+from fbadslib.fbadslib_url import get_random_url, get_random_keyword_url
 from fbadslib.fbadslib_page import FbAdsLibPage
 from logger.logger import log_links
 from exeptions import *
@@ -11,11 +11,14 @@ class FbAdsLibParser:
         self.parsed_pages_count = 0
 
     def _parse_lib_page(self):
-        url = get_random_url()
+        url = get_random_keyword_url()
+        country = url.country
         fbadslib_page = FbAdsLibPage(url, self.proxy)
         fbadslib_page.open()
         for cards in fbadslib_page.parse_cards():
-            log_links(cards)
+            log_links(cards, country.iso)
+            fbadslib_page.forward_cursor = cards.forward_cursor
+            fbadslib_page.collation_token = cards.collation_token
             print('*********************\n')
 
     def parse_lib(self):

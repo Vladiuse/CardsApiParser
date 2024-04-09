@@ -3,6 +3,7 @@ from datetime import timedelta
 from countries import countries
 from keywords import get_random_char_keyword, keyword_db
 import random as r
+from urllib.parse import quote
 
 
 class FbAdsLibUrl:
@@ -26,7 +27,8 @@ class FbAdsLibUrl:
         self.active_status = active_status if active_status else 'all'
 
     def __str__(self):
-        params = f'active_status={self.active_status}&ad_type=all&country={self._country.iso}&q={self.q}&publisher_platforms[0]=facebook&sort_data[direction]=desc&sort_data[mode]=relevancy_monthly_grouped&start_date[min]={self.start_date}&start_date[max]=&search_type=keyword_unordered&media_type={self.media_type}'
+        escaped_q = quote(str(self.q), safe="")
+        params = f'active_status={self.active_status}&ad_type=all&country={self._country.iso}&q={escaped_q}&publisher_platforms[0]=facebook&sort_data[direction]=desc&sort_data[mode]=relevancy_monthly_grouped&start_date[min]={self.start_date}&start_date[max]=&search_type=keyword_unordered&media_type={self.media_type}'
         return FbAdsLibUrl.URL + '?' + params
 
     def __repr__(self):
@@ -77,7 +79,7 @@ def get_random_url():
 def get_random_keyword_url():
     c = countries.get_random()
     lang = c.get_random_lang()
-    q = keyword_db.get_random_key(lang.iso, (1, 1000))
+    q = keyword_db.get_random_key(lang.iso, (1, 500))
     active_status = 'active'
     media_type = r.choice(['video', 'image'])
     url = FbAdsLibUrl(
