@@ -2,6 +2,7 @@ from fbadslib.fbadslib_url import get_random_url, get_random_keyword_url
 from fbadslib.fbadslib_page import FbAdsLibPage
 from logger.logger import log_links
 from exeptions import *
+from funcs import sleep
 
 
 class FbAdsLibParser:
@@ -26,8 +27,11 @@ class FbAdsLibParser:
             try:
                 self.parsed_pages_count += 1
                 self._parse_lib_page()
-            except (LibEnds, ToManyReqErrors) as error:
+            except ToManyReqErrors as error:
                 print(error)
+            except LibEnds as error:
+                print(error)
+                sleep(5)
             except EmptyAdsLibResponse as error:
                 if self.proxy:
                     self.proxy.change_ip()
