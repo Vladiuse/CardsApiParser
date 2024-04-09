@@ -9,15 +9,29 @@ countries_data_file_path = os.path.join(curr_file_path, './countries.json')
 
 class Country:
 
-    def __init__(self, *, iso, ru_name, population, parse_population_conf):
+    def __init__(self, *, iso, ru_name, population, parse_population_conf, languages):
         self.iso = iso.upper()
         self.name = ru_name
         self.population = population
         self.parse_population_conf = parse_population_conf
+        self.languages = [self._dict_to_langs_class(item) for item in languages]
 
     def __str__(self):
         return f'({self.iso}) {self.name}'
 
+    @staticmethod
+    def _dict_to_langs_class(dict):
+        lang = Language(**dict)
+        return lang
+
+    def get_random_lang(self):
+        population = [lang.iso for lang in self.languages]
+        weights = [lang.weight for lang in self.languages]
+        lang_iso = r.choices(population=population, weights=weights)[0]
+        for lang in self.languages:
+            if lang.iso == lang_iso:
+                return lang
+        raise ValueError('Язык не выбран')
 
 def load_countries():
     with open(countries_data_file_path, encoding='utf-8') as file:
@@ -30,8 +44,17 @@ def load_countries():
 
 class Language:
 
-    def __init__(self, languale_name):
-        self.languale_name = languale_name
+    def __init__(self,*, name, iso, weight, keys_deep):
+        self.name = name
+        self.iso = iso
+        self.weight = weight
+        self.keys_deep = keys_deep
+
+    def __repr__(self):
+        return f'{self.name} ({self.iso})'
+
+    def __str__(self):
+        return self.iso.lower()
 
 
 class Countries:
@@ -75,19 +98,12 @@ class Countries:
 countries = Countries()
 
 if __name__ == '__main__':
+    us = countries['ID']
     results = {}
-    for _ in range(100000):
-        c = countries.get_random()
+    for i in range(100):
+        lang = us.get_random_lang()
         try:
-            results[c.iso] += 1
+            results[str(lang)] += 1
         except KeyError:
-            results[c.iso] = 1
-
+            results[str(lang)] = 1
     print(results)
-    res_list = []
-    for iso, count in results.items():
-        res_list.append([iso, count])
-    res_list.sort(key=lambda item: item[1], reverse=True)
-    print(res_list)
-    for iso, count in res_list:
-        print(iso, '\t', count)
