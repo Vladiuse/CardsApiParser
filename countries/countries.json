@@ -8,7 +8,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -21,7 +21,7 @@
                 "name": "Албанский",
                 "iso": "sq",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -34,7 +34,7 @@
                 "name": "Армянский",
                 "iso": "hy",
                 "weight": 1,
-                "keys_deep": 10
+                "keys_deep": 200
             },
             {
                 "name": "Русский",
@@ -53,7 +53,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -66,7 +66,7 @@
                 "name": "Немецкий",
                 "iso": "de",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -79,7 +79,7 @@
                 "name": "Английский",
                 "iso": "en",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -92,7 +92,7 @@
                 "name": "Азербайджанский",
                 "iso": "az",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             },
             {
                 "name": "Русский",
@@ -110,14 +110,14 @@
             {
                 "name": "Боснийский",
                 "iso": "bs",
-                "weight": 1,
-                "keys_deep": null
+                "weight": 6,
+                "keys_deep": 200
             },
             {
                 "name": "Сербский",
                 "iso": "sr",
-                "weight": 0,
-                "keys_deep": null
+                "weight": 3,
+                "keys_deep": 200
             }
         ]
     },
@@ -130,7 +130,7 @@
                 "name": "Бенгальский",
                 "iso": "bn",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2000
             }
         ]
     },
@@ -142,20 +142,20 @@
             {
                 "name": "Немецкий",
                 "iso": "de",
-                "weight": 1,
-                "keys_deep": null
+                "weight": 6,
+                "keys_deep": 200
             },
             {
                 "name": "Французский",
                 "iso": "fr",
-                "weight": 1,
-                "keys_deep": null
+                "weight": 47,
+                "keys_deep": 300
             },
             {
                 "name": "Нидерландский (Голландски",
                 "iso": "nl",
-                "weight": 1,
-                "keys_deep": null
+                "weight": 47,
+                "keys_deep": 300
             }
         ]
     },
@@ -168,7 +168,7 @@
                 "name": "Болгарский",
                 "iso": "bg",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -181,7 +181,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -194,7 +194,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -207,7 +207,7 @@
                 "name": "Португальский",
                 "iso": "pt",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2500
             }
         ]
     },
@@ -219,8 +219,14 @@
             {
                 "name": "Английский",
                 "iso": "en",
-                "weight": 1,
-                "keys_deep": null
+                "weight": 8,
+                "keys_deep": 1000
+            },
+            {
+                "name": "Французский",
+                "iso": "fr",
+                "weight": 2,
+                "keys_deep": 300
             }
         ]
     },
@@ -232,20 +238,20 @@
             {
                 "name": "Немецкий",
                 "iso": "de",
-                "weight": 6,
-                "keys_deep": null
+                "weight": 63,
+                "keys_deep": 300
             },
             {
                 "name": "Французский",
                 "iso": "fr",
-                "weight": 2,
-                "keys_deep": null
+                "weight": 20,
+                "keys_deep": 200
             },
             {
                 "name": "Итальянский",
                 "iso": "it",
-                "weight": 2,
-                "keys_deep": null
+                "weight": 6,
+                "keys_deep": 200
             }
         ]
     },
@@ -258,7 +264,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -271,7 +277,7 @@
                 "name": "Китайский",
                 "iso": "zh",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2000
             }
         ]
     },
@@ -284,7 +290,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -297,7 +303,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -310,7 +316,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -323,7 +329,7 @@
                 "name": "Греческий (новогреческий)",
                 "iso": "el",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -336,7 +342,7 @@
                 "name": "Чешский",
                 "iso": "cs",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -348,8 +354,14 @@
             {
                 "name": "Немецкий",
                 "iso": "de",
+                "weight": 80,
+                "keys_deep": 2500
+            },
+            {
+                "name": "Турецкий",
+                "iso": "tr",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -362,7 +374,7 @@
                 "name": "Датский",
                 "iso": "da",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -375,7 +387,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -388,7 +400,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -401,7 +413,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -414,7 +426,7 @@
                 "name": "Эстонский",
                 "iso": "et",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -427,7 +439,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2000
             }
         ]
     },
@@ -440,7 +452,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2000
             }
         ]
     },
@@ -453,7 +465,7 @@
                 "name": "Финский (Suomi)",
                 "iso": "fi",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -466,7 +478,7 @@
                 "name": "Французский",
                 "iso": "fr",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2000
             }
         ]
     },
@@ -479,7 +491,7 @@
                 "name": "Английский",
                 "iso": "en",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2000
             }
         ]
     },
@@ -492,7 +504,7 @@
                 "name": "Грузинский",
                 "iso": "ka",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             },
             {
                 "name": "Русский",
@@ -511,7 +523,7 @@
                 "name": "Греческий (новогреческий)",
                 "iso": "el",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -524,7 +536,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -537,7 +549,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -550,7 +562,7 @@
                 "name": "Хорватский",
                 "iso": "hr",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -563,7 +575,7 @@
                 "name": "Венгерский",
                 "iso": "hu",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -576,13 +588,13 @@
                 "name": "Индонезийский",
                 "iso": "id",
                 "weight": 8,
-                "keys_deep": null
+                "keys_deep": 2500
             },
             {
                 "name": "Малайский",
                 "iso": "ms",
                 "weight": 2,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -595,7 +607,7 @@
                 "name": "Ирландский",
                 "iso": "ga",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -605,10 +617,16 @@
         "parse_population_conf": 10,
         "languages": [
             {
+                "name": "Арабский",
+                "iso": "ar",
+                "weight": 1,
+                "keys_deep": 200
+            },
+            {
                 "name": "Иврит",
                 "iso": "he",
-                "weight": 1,
-                "keys_deep": null
+                "weight": 9,
+                "keys_deep": 300
             }
         ]
     },
@@ -618,16 +636,22 @@
         "parse_population_conf": 80,
         "languages": [
             {
+                "name": "Арабский",
+                "iso": "ar",
+                "weight": 2,
+                "keys_deep": 200
+            },
+            {
                 "name": "Английский",
                 "iso": "en",
-                "weight": 1,
-                "keys_deep": null
+                "weight": 49,
+                "keys_deep": 1000
             },
             {
                 "name": "Хинди",
                 "iso": "hi",
-                "weight": 1,
-                "keys_deep": null
+                "weight": 49,
+                "keys_deep": 1000
             }
         ]
     },
@@ -640,7 +664,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -653,7 +677,7 @@
                 "name": "Исландский",
                 "iso": "is",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -666,7 +690,7 @@
                 "name": "Итальянский",
                 "iso": "it",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2000
             }
         ]
     },
@@ -679,7 +703,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -692,7 +716,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -705,7 +729,7 @@
                 "name": "Японский",
                 "iso": "ja",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2500
             }
         ]
     },
@@ -718,7 +742,7 @@
                 "name": "Кхмерский",
                 "iso": "km",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -731,7 +755,7 @@
                 "name": "Корейский",
                 "iso": "ko",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -744,7 +768,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -757,7 +781,7 @@
                 "name": "Казахский",
                 "iso": "kk",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             },
             {
                 "name": "Русский",
@@ -776,7 +800,7 @@
                 "name": "Лаосский",
                 "iso": "lo",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -789,7 +813,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -802,7 +826,7 @@
                 "name": "Литовский",
                 "iso": "lt",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -815,13 +839,13 @@
                 "name": "Немецкий",
                 "iso": "de",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             },
             {
                 "name": "Французский",
                 "iso": "fr",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -834,7 +858,7 @@
                 "name": "Латышский",
                 "iso": "lv",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -847,7 +871,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -860,7 +884,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -879,7 +903,7 @@
                 "name": "Сербский",
                 "iso": "sr",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -892,7 +916,7 @@
                 "name": "Македонский",
                 "iso": "mk",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -905,7 +929,7 @@
                 "name": "Бирманский",
                 "iso": "my",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -918,7 +942,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2500
             }
         ]
     },
@@ -931,7 +955,7 @@
                 "name": "Малайский",
                 "iso": "ms",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -944,7 +968,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -957,7 +981,7 @@
                 "name": "Нидерландский (Голландски",
                 "iso": "nl",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -970,7 +994,7 @@
                 "name": "Норвежский",
                 "iso": "no",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -983,13 +1007,13 @@
                 "name": "Хинди",
                 "iso": "hi",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             },
             {
                 "name": "Непальский",
                 "iso": "ne",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -1002,7 +1026,7 @@
                 "name": "Английский",
                 "iso": "en",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -1015,7 +1039,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -1028,7 +1052,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -1041,7 +1065,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -1054,7 +1078,7 @@
                 "name": "Филиппинский",
                 "iso": "tl",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2000
             }
         ]
     },
@@ -1067,13 +1091,13 @@
                 "name": "Английский",
                 "iso": "en",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             },
             {
                 "name": "Урду",
                 "iso": "ur",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -1086,7 +1110,7 @@
                 "name": "Польский",
                 "iso": "pl",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -1099,7 +1123,7 @@
                 "name": "Португальский",
                 "iso": "pt",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -1112,7 +1136,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -1125,7 +1149,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -1138,7 +1162,7 @@
                 "name": "Румынский",
                 "iso": "ro",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -1151,7 +1175,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -1164,7 +1188,7 @@
                 "name": "Шведский",
                 "iso": "sv",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -1177,19 +1201,19 @@
                 "name": "Английский",
                 "iso": "en",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             },
             {
                 "name": "Малайский",
                 "iso": "ms",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             },
             {
                 "name": "Китайский",
                 "iso": "zh",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -1202,7 +1226,7 @@
                 "name": "Словенский",
                 "iso": "sl",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -1215,7 +1239,7 @@
                 "name": "Словацкий",
                 "iso": "sk",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -1228,7 +1252,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -1241,7 +1265,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -1254,7 +1278,7 @@
                 "name": "Тайский",
                 "iso": "th",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2000
             }
         ]
     },
@@ -1267,7 +1291,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 300
             }
         ]
     },
@@ -1280,7 +1304,7 @@
                 "name": "Турецкий",
                 "iso": "tr",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 2500
             }
         ]
     },
@@ -1293,7 +1317,7 @@
                 "name": "Китайский",
                 "iso": "zh",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 1000
             }
         ]
     },
@@ -1306,13 +1330,13 @@
                 "name": "Английский",
                 "iso": "en",
                 "weight": 8,
-                "keys_deep": null
+                "keys_deep": 7000
             },
             {
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 2,
-                "keys_deep": null
+                "keys_deep": 2000
             }
         ]
     },
@@ -1325,7 +1349,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -1338,7 +1362,7 @@
                 "name": "Испанский",
                 "iso": "es",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     },
@@ -1351,7 +1375,7 @@
                 "name": "Албанский",
                 "iso": "sq",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 200
             }
         ]
     },
@@ -1364,7 +1388,7 @@
                 "name": "Арабский",
                 "iso": "ar",
                 "weight": 1,
-                "keys_deep": null
+                "keys_deep": 500
             }
         ]
     }

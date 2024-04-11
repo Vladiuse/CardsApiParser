@@ -4,14 +4,13 @@ from funcs import sleep
 import requests as req
 from requests.exceptions import RequestException
 from fbadslib.cards_resp import FbCardsRes, fb_responce_to_dict
-from fbadslib.fbadslib_url import  FbAdsLibUrl
+from fbadslib.fbadslib_url import FbAdsLibUrl
 from exeptions import ToManyReqErrors
 from funcs import Timer, check_proxy
 from config.settings import REQ_ERRORS_ROW_COUNT, REQ_TIMEOUT, SLEEP_BETWEEN_REQS
 
-
-
 timer = Timer()
+
 
 class FbAdsLibPage:
     basic_cookies = {
@@ -40,19 +39,19 @@ class FbAdsLibPage:
         'viewport-width': '1920',
     }
 
-    def __init__(self, url:FbAdsLibUrl, proxy=None):
+    def __init__(self, url: FbAdsLibUrl, proxy=None):
         self.url = url
         self.proxy = proxy
         self.headers = FbAdsLibPage.basic_headers.copy()
         self.cookies = FbAdsLibPage.basic_cookies.copy()
-        self.basic_params  = None
+        self.basic_params = None
         self.data = None
         self.forward_cursor = None
         self.collation_token = None
         self.REQUEST_COUNT = 0
 
         self.REQ_KWARGS = {
-            'proxies': { 'https': self.proxy.url}
+            'proxies': {'https': self.proxy.url}
         } if self.proxy else {}
 
     @staticmethod
@@ -86,7 +85,7 @@ class FbAdsLibPage:
         print(repr(self.url))
         url_string = str(self.url)
         print(url_string)
-        res = req.get(url_string,
+        res = req.get(url_string,  # TODO add exeption
                       headers=self.headers,
                       cookies=self.basic_cookies,
                       timeout=REQ_TIMEOUT,
@@ -165,7 +164,7 @@ class FbAdsLibPage:
             else:
                 print('\n' * 9)
                 print(self.url.country)
-                print('REQUEST_COUNT:',self.REQUEST_COUNT)
+                print('REQUEST_COUNT:', self.REQUEST_COUNT)
                 print(timer.time_string)
                 raise ToManyReqErrors
             #######
@@ -173,15 +172,9 @@ class FbAdsLibPage:
                 file.write(res_text)
             self.REQUEST_COUNT += 1
             print('REQUEST_COUNT:', self.REQUEST_COUNT)
+            if self.proxy:
+                print(repr(self.proxy))
             print(repr(self.url.country))
             cards_data = fb_responce_to_dict(res_text)
             cards_res = FbCardsRes(cards_data)
             yield cards_res
-
-
-
-
-
-
-
-
