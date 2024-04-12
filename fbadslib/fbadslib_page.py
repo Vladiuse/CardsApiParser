@@ -157,7 +157,7 @@ class FbAdsLibPage:
                     sleep(sleep_time)
                     sleep_time += 5
                 except RequestException as error:
-                    print(error)
+                    print(type(error))
                     print('Continue')
                     sleep(sleep_time)
                     sleep_time += 5
