@@ -171,10 +171,12 @@ class FbAdsLibPage:
             with open('./z_work/x.json', 'w') as file:
                 file.write(res_text)
             self.REQUEST_COUNT += 1
-            print('REQUEST_COUNT:', self.REQUEST_COUNT)
+            req_time = round(res.elapsed.total_seconds(),1)
+            print(f'REQUEST_COUNT: {self.REQUEST_COUNT}, ReqTime: {req_time}s' )
             if self.proxy:
-                print(repr(self.proxy))
+                print(f'Proxy: {self.proxy.id}')
             print(repr(self.url.country))
+            print(repr(self.url.q))
             cards_data = fb_responce_to_dict(res_text)
             cards_res = FbCardsRes(cards_data)
             yield cards_res
