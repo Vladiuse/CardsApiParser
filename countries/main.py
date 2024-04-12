@@ -17,7 +17,7 @@ class Country:
         self.languages = [self._dict_to_langs_class(item) for item in languages]
 
     def __repr__(self):
-        return f'({self.iso}) {self.name}'
+        return f'{self.name} ({self.iso}) '
 
     def __str__(self):
         return self.iso.upper()
