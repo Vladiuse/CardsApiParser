@@ -13,6 +13,7 @@ class FbAdsLibParser:
 
     def _parse_lib_page(self):
         url = get_random_keyword_url()
+        #url = get_random_url()
         country = url.country
         fbadslib_page = FbAdsLibPage(url, self.proxy)
         fbadslib_page.open()

@@ -14,11 +14,11 @@ timer = Timer()
 
 class FbAdsLibPage:
     basic_cookies = {
-        'wd': '1920x325',
+        'wd': '1325x939',
     }
     basic_headers = {
         'authority': 'www.facebook.com',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
         'accept-language': 'uk-UA,uk;q=0.9,en-US;q=0.8,en;q=0.7',
         # 'cache-control': 'max-age=0',
         # 'cookie': 'datr=3yDfZY0Rti8G0kS_lPtOnutL; ps_l=0; ps_n=0; dpr=2; fr=0IwSIMg0dKkvPlr0l..Bl3y21..AAA.0.0.Bl3y3Z.AWWwVg491ek; usida=eyJ2ZXIiOjEsImlkIjoiQXM5dTQ0NWs3eXJmZSIsInRpbWUiOjE3MDk1NzQ0ODV9; wd=1920x567',
@@ -35,8 +35,8 @@ class FbAdsLibPage:
         'sec-fetch-site': 'same-origin',
         'sec-fetch-user': '?1',
         'upgrade-insecure-requests': '1',
-        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-        'viewport-width': '1920',
+        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:122.0) Gecko/20100101 Firefox/122.0',
+        'viewport-width': '1325',
     }
 
     def __init__(self, url: FbAdsLibUrl, proxy=None):
@@ -59,7 +59,7 @@ class FbAdsLibPage:
         result = dict()
         params_from_search = {
             'datr': ['"_js_datr","', '"'],
-            'session_id': ['session_id":"', '"'],
+            'session_id': ['sessionId":"', '"'],
             'lsd': ['"LSD",[],{"token":"', '"'],
             'hs': ['"haste_session":"', '"'],
             'rev': ['"client_revision":', ','],
@@ -78,6 +78,8 @@ class FbAdsLibPage:
                     param_key: param_value
                 })
             except ValueError as error:
+                with open('./z_work/x.html', 'w', encoding='utf-8') as file:
+                    file.write(html)
                 raise ValueError(param_key, 'параметр не найден')
         return result
 
