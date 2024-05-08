@@ -3,6 +3,7 @@ from fbadslib.fbadslib_page import FbAdsLibPage
 from logger.logger import log_links
 from exeptions import *
 from funcs import sleep
+from exeptions import DETH_SCREEN
 
 
 class FbAdsLibParser:
@@ -30,6 +31,7 @@ class FbAdsLibParser:
                 self._parse_lib_page()
             except ToManyReqErrors as error:
                 print(error)
+                sleep(5)
             except LibEnds as error:
                 print(error)
                 sleep(5)
@@ -37,7 +39,8 @@ class FbAdsLibParser:
                 if self.proxy:
                     self.proxy.change_ip()
                 else:
-                    raise error
+                    print(error)
+                    exit()
 
 
 

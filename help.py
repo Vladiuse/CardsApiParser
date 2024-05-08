@@ -1,3 +1,5 @@
+from exeptions import parser_dead
+
 COMMANDS = [
     {
         'name': 'parse.py {-proxy=proxy_num}',
@@ -15,3 +17,4 @@ COMMANDS = [
 for command in COMMANDS:
     print(command['name'])
     print('-', command['description'], end='\n\n')
+

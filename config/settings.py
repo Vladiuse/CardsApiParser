@@ -11,6 +11,8 @@ REQ_ERRORS_ROW_COUNT = int(config.get('AdsLibParser', 'req_errors_row_count'))
 REQ_TIMEOUT = int(config.get('AdsLibParser', 'req_timeout'))
 SLEEP_BETWEEN_REQS = int(config.get('AdsLibParser', 'sleep_between_reqs'))
 
+PLAY_SOUND = True if config.get('Pc', 'play_sound')  == 'true' else False
+
 
 
 

@@ -1,6 +1,13 @@
 from print_color import print as cprint
 from pprint import pprint
 from config import settings
+from playsound import playsound as _playsound
+
+
+def playsound(*args, **kwargs):
+    if settings.PLAY_SOUND:
+        _playsound(*args, **kwargs)
+
 class ToManyReqErrors(Exception):
     """Превышен лимит ошибок запросов в сеть подряд"""
 
@@ -35,6 +42,24 @@ class LibEnds(Exception):
         text = 'Библиотека закончилась (пустой forwardCursor)'
         cprint(text, tag=self.__class__.__name__, color='white', tag_color='red')
         return ''
+
+DETH_SCREEN = """
+@       @  @       @ @       @ @       @  @       @ @       @ 
+ @     @    @     @   @     @   @     @    @     @   @     @    
+  @   @      @   @     @   @     @   @      @   @     @   @      
+   @ @        @ @       @ @       @ @        @ @       @ @      
+    @          @         @         @          @         @       
+   @ @        @ @       @ @       @ @        @ @       @ @    
+  @   @      @   @     @   @     @   @      @   @     @   @       
+ @     @    @     @   @     @   @     @    @     @   @     @   
+@       @  @       @ @       @ @       @  @       @ @       @ 
+"""
+
+def parser_dead():
+    print(DETH_SCREEN)
+    playsound('./media/parser_dead.mp3')
+
+
 
 if __name__ == '__main__':
     raise EmptyAdsLibResponse({'errorSummary':1, 'errorDescription': 2})
