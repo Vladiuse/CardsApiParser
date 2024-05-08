@@ -63,6 +63,7 @@ class FbAdsLibUrl:
 
 
 def get_random_url():
+    """парс на символах"""
     c = countries.get_random()
     q = get_random_char_keyword()
     active_status = 'active'
@@ -77,6 +78,7 @@ def get_random_url():
 
 
 def get_random_keyword_url():
+    """Парс по языковым ключам"""
     c = countries.get_random()
     lang = c.get_random_lang()
     q = keyword_db.get_random_key(lang.iso, (1, lang.keys_deep))
