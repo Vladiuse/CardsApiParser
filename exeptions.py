@@ -8,6 +8,7 @@ def playsound(*args, **kwargs):
     if settings.PLAY_SOUND:
         _playsound(*args, **kwargs)
 
+
 class ToManyReqErrors(Exception):
     """Превышен лимит ошибок запросов в сеть подряд"""
 
@@ -36,12 +37,14 @@ class EmptyAdsLibResponse(Exception):
         cprint(text, tag=self.__class__.__name__, color='white', tag_color='red')
         return ''
 
+
 class LibEnds(Exception):
 
     def __str__(self):
         text = 'Библиотека закончилась (пустой forwardCursor)'
         cprint(text, tag=self.__class__.__name__, color='white', tag_color='red')
         return ''
+
 
 DETH_SCREEN = """
 @       @  @       @ @       @ @       @  @       @ @       @ 
@@ -55,11 +58,12 @@ DETH_SCREEN = """
 @       @  @       @ @       @ @       @  @       @ @       @ 
 """
 
+
 def parser_dead():
     print(DETH_SCREEN)
     playsound('./media/parser_dead.mp3')
-
+    exit()
 
 
 if __name__ == '__main__':
-    raise EmptyAdsLibResponse({'errorSummary':1, 'errorDescription': 2})
+    raise EmptyAdsLibResponse({'errorSummary': 1, 'errorDescription': 2})

@@ -114,10 +114,8 @@ class FbAdsLibPage:
         else:
             print('\n' * 9)
             print(self.url.country)
-            print('Cant open lib main page')
-            print('REQUEST_COUNT:', self.REQUEST_COUNT)
             print(timer.time_string)
-            raise ToManyReqErrors
+            raise ConnectionError(f'Не удалось открыть страницу библиотеки, {REQ_ERRORS_ROW_COUNT} попыток')
 
         html = res.text
         with open('./z_work/x.html', 'w', encoding='utf-8') as file:
