@@ -87,15 +87,37 @@ class FbAdsLibPage:
         print(repr(self.url))
         url_string = str(self.url)
         print(url_string)
-        res = req.get(url_string,  # TODO add exeption
-                      headers=self.headers,
-                      cookies=self.basic_cookies,
-                      timeout=REQ_TIMEOUT,
-                      **self.REQ_KWARGS,
-                      )
-        if res.status_code != 200:
-            print('Not 200 status code')
-            raise ConnectionError
+        sleep_time = 5
+        for _ in range(REQ_ERRORS_ROW_COUNT):
+            try:
+                res = req.get(url_string,  # TODO add exeption
+                              headers=self.headers,
+                              cookies=self.basic_cookies,
+                              timeout=REQ_TIMEOUT,
+                              **self.REQ_KWARGS,
+                              )
+                res.raise_for_status()
+                res_text = res.text
+                sleep_time = 5
+                break
+            except req.exceptions.HTTPError as error:
+                with open('./logs/error_not_200.json', 'w', encoding='utf-8') as file:
+                    file.write(res_text)
+                print(f'Responce not 200! ({res.status_code})')
+                sleep(sleep_time)
+                sleep_time += 5
+            except RequestException as error:
+                print(type(error))
+                print('Continue')
+                sleep(sleep_time)
+                sleep_time += 5
+        else:
+            print('\n' * 9)
+            print(self.url.country)
+            print('Cant open lib main page')
+            print('REQUEST_COUNT:', self.REQUEST_COUNT)
+            print(timer.time_string)
+            raise ToManyReqErrors
 
         html = res.text
         with open('./z_work/x.html', 'w', encoding='utf-8') as file:
