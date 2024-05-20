@@ -87,7 +87,8 @@ class FbAdsLibPage:
         print(repr(self.url))
         url_string = str(self.url)
         print(url_string)
-        sleep_time = 5
+        sleep_time = 30
+        sleep_time_increase = 60
         for _ in range(REQ_ERRORS_ROW_COUNT):
             try:
                 res = req.get(url_string,  # TODO add exeption
@@ -98,19 +99,19 @@ class FbAdsLibPage:
                               )
                 res.raise_for_status()
                 res_text = res.text
-                sleep_time = 5
+                sleep_time = 30
                 break
             except req.exceptions.HTTPError as error:
                 with open('./logs/error_not_200.json', 'w', encoding='utf-8') as file:
                     file.write(res_text)
                 print(f'Responce not 200! ({res.status_code})')
                 sleep(sleep_time)
-                sleep_time += 5
+                sleep_time += sleep_time_increase
             except RequestException as error:
                 print(type(error))
                 print('Continue')
                 sleep(sleep_time)
-                sleep_time += 5
+                sleep_time += sleep_time_increase
         else:
             print('\n' * 9)
             print(self.url.country)
