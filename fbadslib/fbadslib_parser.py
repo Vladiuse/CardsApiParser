@@ -33,6 +33,7 @@ class FbAdsLibParser:
                 print(error)
                 sleep(5)
             except EmptyAdsLibResponse as error:
+                print(error)
                 if self.proxy:
                     self.proxy.change_ip()
                 else:
