@@ -3,6 +3,7 @@ from datetime import timedelta
 from countries import countries
 from keywords import get_random_char_keyword, keyword_db
 import random as r
+from config.settings import KEYWORD_TYPE
 from urllib.parse import quote
 
 
@@ -62,7 +63,7 @@ class FbAdsLibUrl:
             raise ValueError('Incorrect active status')
 
 
-def get_random_url():
+def get_random_char_url():
     """парс на символах"""
     c = countries.get_random()
     q = get_random_char_keyword()
@@ -83,7 +84,7 @@ def get_random_keyword_url():
     lang = c.get_random_lang()
     q = keyword_db.get_random_key(lang.iso, (1, lang.keys_deep))
     active_status = 'active'
-    media_type = 'all' #r.choice(['video', 'image'])
+    media_type = 'all'  # r.choice(['video', 'image'])
     url = FbAdsLibUrl(
         country=c,
         q=q,
@@ -94,7 +95,18 @@ def get_random_keyword_url():
     return url
 
 
+def get_random_url():
+    """Получить ссылку на либо в зависимости от типа указаного в конциге"""
+    keywords_funcs = {
+        'vocabulary': get_random_keyword_url,
+        'chars': get_random_char_url
+    }
+    url_func = keywords_funcs[KEYWORD_TYPE]
+    url = url_func()
+    return url
+
+
 if __name__ == '__main__':
-    url = get_random_url()
+    url = get_random_char_url()
     print(repr(url))
     print(url)

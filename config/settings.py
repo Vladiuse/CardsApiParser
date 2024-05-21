@@ -14,5 +14,11 @@ SLEEP_BETWEEN_REQS = int(config.get('AdsLibParser', 'sleep_between_reqs'))
 PLAY_SOUND = True if config.get('Pc', 'play_sound')  == 'true' else False
 
 
+KEY_WORDS_TYPES = ('vocabulary', 'chars')
+
+KEYWORD_TYPE = config.get('KeyWords', 'keys_type')
+if KEYWORD_TYPE not in KEY_WORDS_TYPES:
+    raise ValueError(f'Incorrect keys type "{KEYWORD_TYPE}", must be {KEY_WORDS_TYPES}')
+
 
 

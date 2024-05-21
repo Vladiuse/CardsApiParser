@@ -1,4 +1,4 @@
-from fbadslib.fbadslib_url import get_random_url, get_random_keyword_url
+from fbadslib.fbadslib_url import  get_random_url
 from fbadslib.fbadslib_page import FbAdsLibPage
 from logger.logger import log_links
 from exeptions import *
@@ -13,8 +13,7 @@ class FbAdsLibParser:
         self.parsed_pages_count = 0
 
     def _parse_lib_page(self):
-        url = get_random_keyword_url()
-        #url = get_random_url()
+        url = get_random_url()
         country = url.country
         fbadslib_page = FbAdsLibPage(url, self.proxy)
         fbadslib_page.open()

@@ -89,6 +89,7 @@ class FbAdsLibPage:
         print(url_string)
         sleep_time = 30
         sleep_time_increase = 60
+        res_text = 'noText'
         for _ in range(REQ_ERRORS_ROW_COUNT):
             try:
                 res = req.get(url_string,  # TODO add exeption
