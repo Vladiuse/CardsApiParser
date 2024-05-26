@@ -16,6 +16,7 @@ class FbCardsRes:
         self.data = data
         self._is_cards_exists()
         self.cards = self._get_cards()
+        self._is_no_cards()
 
     def _is_cards_exists(self):
         if self.data['payload']:
@@ -23,6 +24,13 @@ class FbCardsRes:
         with open('./logs/empty_res.json', 'w', encoding='utf-8') as file:
             file.write(str(self.data))
         raise EmptyAdsLibResponse(self.data)
+
+    def _is_no_cards(self):
+        if not self.cards:
+            print('NO cards!!!')
+            with open('./logs/0_cards.json', 'w') as file:
+                file.write(str(self.data))
+            raise ZeroCardsResponse
 
     def show_tokens(self):
 

@@ -45,6 +45,16 @@ class LibEnds(Exception):
         cprint(text, tag=self.__class__.__name__, color='white', tag_color='red')
         return ''
 
+class ZeroCardsResponse(Exception):
+
+    def __init__(self, data=None):
+        self.data = data
+
+    def __str__(self):
+        text = '0 карточек в ответе'
+        cprint(text, tag=self.__class__.__name__, color='white', tag_color='red')
+        pprint(self.data)
+        return ''
 
 DETH_SCREEN = """
 @       @  @       @ @       @ @       @  @       @ @       @ 

@@ -31,10 +31,12 @@ class FbAdsLibParser:
             except (ToManyReqErrors,LibEnds) as error:
                 print(error)
                 sleep(5)
-            except EmptyAdsLibResponse as error:
+                self.parsed_pages_count = 0
+            except (EmptyAdsLibResponse, ZeroCardsResponse) as error:
                 print(error)
                 if self.proxy:
                     self.proxy.change_ip()
+                    self.parsed_pages_count = 0
                 else:
                     print(error)
                     parser_dead()
