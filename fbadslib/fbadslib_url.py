@@ -3,8 +3,9 @@ from datetime import timedelta
 from countries import countries
 from keywords import get_random_char_keyword, keyword_db
 import random as r
-from config.settings import KEYWORD_TYPE
+from config.settings import KEYWORD_TYPE, AdsLib
 from urllib.parse import quote
+
 
 
 class FbAdsLibUrl:
@@ -20,16 +21,22 @@ class FbAdsLibUrl:
         'inactive',
     }
 
-    def __init__(self, country, q, start_date=None, media_type=None, active_status=None):
+    def __init__(self, country, q,
+                 start_date=None,
+                 end_date=None,
+                 media_type=None,
+                 active_status=None,
+                 ):
         self._country = country
         self.q = q
         self.start_date = start_date if start_date else str(datetime.now().date() - timedelta(days=1))
+        self.end_date = end_date if end_date else ''
         self.media_type = media_type if media_type else 'all'
         self.active_status = active_status if active_status else 'all'
 
     def __str__(self):
         escaped_q = quote(str(self.q), safe="")
-        params = f'active_status={self.active_status}&ad_type=all&country={self._country.iso}&q={escaped_q}&publisher_platforms[0]=facebook&sort_data[direction]=desc&sort_data[mode]=relevancy_monthly_grouped&start_date[min]={self.start_date}&start_date[max]=&search_type=keyword_unordered&media_type={self.media_type}'
+        params = f'active_status={self.active_status}&ad_type=all&country={self._country.iso}&q={escaped_q}&publisher_platforms[0]=facebook&sort_data[direction]=desc&sort_data[mode]=relevancy_monthly_grouped&start_date[min]={self.start_date}&start_date[max]={self.end_date}&search_type=keyword_unordered&media_type={self.media_type}'
         return FbAdsLibUrl.URL + '?' + params
 
     def __repr__(self):
@@ -37,6 +44,7 @@ class FbAdsLibUrl:
         print(f'Q:{repr(self.q)}')
         print(f'Country: {repr(self._country)}')
         print(f'StartDate: {self.start_date}')
+        print(f'End Date: {self.end_date}')
         print(f'MediaType: {self.media_type}')
         print(f'ActiveStatus: {self.active_status}')
         return '\n'
@@ -73,7 +81,8 @@ def get_random_char_url():
         country=c,
         q=q,
         media_type=media_type,
-        start_date='2024-01-01',
+        start_date=AdsLib.START_DATE(),
+        end_date=AdsLib.END_DATE(),
         active_status=active_status,
     )
 
@@ -89,7 +98,8 @@ def get_random_keyword_url():
         country=c,
         q=q,
         media_type=media_type,
-        start_date='2024-01-01',
+        start_date=AdsLib.START_DATE(),
+        end_date=AdsLib.END_DATE(),
         active_status=active_status,
     )
     return url

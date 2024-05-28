@@ -36,7 +36,10 @@ class AdsLib:
 
     @classmethod
     def END_DATE(cls):
-        return str(cls._to_date(cls._END_DATE))
+        if not cls.FLOATING_DATE():
+            return str(cls._to_date(cls._END_DATE))
+        else:
+            return cls._get_float_end_date()
 
     @staticmethod
     def _to_date(date: str, date_name=None):
