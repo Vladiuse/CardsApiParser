@@ -25,7 +25,7 @@ if KEYWORD_TYPE not in KEY_WORDS_TYPES:
 class AdsLib:
     _START_DATE = config.get('AdsLib', 'start_date')
     _END_DATE = config.get('AdsLib', 'end_date')
-    _FLOATING_DATE = config.get('AdsLib', 'floating_date')
+    _FLOATING_END_DATE = config.get('AdsLib', 'floating_end_date')
 
     TODAY = datetime.today().date()
     FLOATING_DATA_VALUES = ('true', 'false')
@@ -36,7 +36,7 @@ class AdsLib:
 
     @classmethod
     def END_DATE(cls):
-        if not cls.FLOATING_DATE():
+        if not cls.FLOATING_END_DATE():
             return str(cls._to_date(cls._END_DATE))
         else:
             return cls._get_float_end_date()
@@ -52,10 +52,10 @@ class AdsLib:
                 raise ConfigError(f'Incorrect {date_name}')
 
     @classmethod
-    def FLOATING_DATE(cls):
-        if cls._FLOATING_DATE == 'true':
+    def FLOATING_END_DATE(cls):
+        if cls._FLOATING_END_DATE == 'true':
             return True
-        if cls._FLOATING_DATE == 'false':
+        if cls._FLOATING_END_DATE == 'false':
             return False
 
     @classmethod
@@ -83,19 +83,19 @@ class AdsLib:
 
     @staticmethod
     def _check_floating_data():
-        if AdsLib._FLOATING_DATE not in AdsLib.FLOATING_DATA_VALUES:
-            raise ConfigError(f'Incorrect floating_date, must be in {AdsLib.FLOATING_DATA_VALUES}')
+        if AdsLib._FLOATING_END_DATE not in AdsLib.FLOATING_DATA_VALUES:
+            raise ConfigError(f'Incorrect floating_end_date, must be in {AdsLib.FLOATING_DATA_VALUES}')
 
     @classmethod
     def dates(cls) -> tuple:
-        if not cls.FLOATING_DATE():
+        if not cls.FLOATING_END_DATE():
             return (cls.START_DATE(), cls.END_DATE())
         else:
             return (cls.START_DATE(), cls._get_float_end_date())
 
     @classmethod
     def _get_float_end_date(csl):
-        if not csl.FLOATING_DATE():
+        if not csl.FLOATING_END_DATE():
             raise AttributeError('Floating slag must be True')
         start_date = AdsLib._to_date(AdsLib._START_DATE, 'start_date')
         end_date = AdsLib._to_date(AdsLib._END_DATE, 'end_date')

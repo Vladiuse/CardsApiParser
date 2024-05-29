@@ -105,7 +105,7 @@ def get_random_keyword_url():
     return url
 
 
-def get_random_url():
+def get_url():
     """Получить ссылку на либо в зависимости от типа указаного в конциге"""
     keywords_funcs = {
         'vocabulary': get_random_keyword_url,
