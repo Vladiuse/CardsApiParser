@@ -75,7 +75,6 @@ def get_random_char_url():
     """парс на символах"""
     c = countries.get_random()
     q = get_random_char_keyword()
-    active_status = 'active'
     media_type = r.choice(['video', 'image'])
     return FbAdsLibUrl(
         country=c,
@@ -83,7 +82,7 @@ def get_random_char_url():
         media_type=media_type,
         start_date=AdsLib.START_DATE(),
         end_date=AdsLib.END_DATE(),
-        active_status=active_status,
+        active_status=AdsLib.ADS_STATUS(),
     )
 
 
@@ -92,7 +91,6 @@ def get_random_keyword_url():
     c = countries.get_random()
     lang = c.get_random_lang()
     q = keyword_db.get_random_key(lang.iso, (1, lang.keys_deep))
-    active_status = 'active'
     media_type = 'all'  # r.choice(['video', 'image'])
     url = FbAdsLibUrl(
         country=c,
@@ -100,7 +98,7 @@ def get_random_keyword_url():
         media_type=media_type,
         start_date=AdsLib.START_DATE(),
         end_date=AdsLib.END_DATE(),
-        active_status=active_status,
+        active_status=AdsLib.ADS_STATUS(),
     )
     return url
 

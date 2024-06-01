@@ -26,6 +26,7 @@ class AdsLib:
     _START_DATE = config.get('AdsLib', 'start_date')
     _END_DATE = config.get('AdsLib', 'end_date')
     _FLOATING_END_DATE = config.get('AdsLib', 'floating_end_date')
+    _ADS_STATUS = config.get('AdsLib', 'ads_status')
 
     TODAY = datetime.today().date()
     FLOATING_DATA_VALUES = ('true', 'false')
@@ -57,6 +58,10 @@ class AdsLib:
             return True
         if cls._FLOATING_END_DATE == 'false':
             return False
+
+    @classmethod
+    def ADS_STATUS(cls):
+        return cls._ADS_STATUS
 
     @classmethod
     def validate(cls):
