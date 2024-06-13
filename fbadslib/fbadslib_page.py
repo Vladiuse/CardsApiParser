@@ -4,7 +4,7 @@ from funcs import sleep
 import requests as req
 from requests.exceptions import RequestException
 from fbadslib.cards_resp import FbCardsRes, fb_responce_to_dict
-from fbadslib.fbadslib_url import FbAdsLibUrl
+from fbadslib.fbadslib_url import FbAdsLibUrlBuilder
 from exeptions import ToManyReqErrors
 from funcs import Timer, check_proxy
 from config.settings import REQ_ERRORS_ROW_COUNT, REQ_TIMEOUT, SLEEP_BETWEEN_REQS
@@ -39,7 +39,7 @@ class FbAdsLibPage:
         'viewport-width': '1325',
     }
 
-    def __init__(self, url: FbAdsLibUrl, proxy=None):
+    def __init__(self, url: FbAdsLibUrlBuilder, proxy=None):
         self.url = url
         self.proxy = proxy
         self.headers = FbAdsLibPage.basic_headers.copy()

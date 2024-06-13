@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 from datetime import timedelta
 from countries import countries
@@ -5,10 +6,39 @@ from keywords import get_random_char_keyword, keyword_db
 import random as r
 from config.settings import KEYWORD_TYPE, AdsLib
 from urllib.parse import quote
-
+from countries import countries
 
 
 class FbAdsLibUrl:
+
+    @property
+    def param_string(self):
+        raise NotImplemented
+
+    @property
+    def country(self):
+        raise NotImplemented
+
+class FbAdsLibUrlString(FbAdsLibUrl):
+
+    def __init__(self, url):
+        self.url = url
+
+    @property
+    def param_string(self):
+        return self.url.split('?')[-1]
+
+    @property
+    def country(self):
+        result = re.search('county=\w\w', self.url)
+        if result:
+            country_code = result[0]
+            country = countries[country_code]
+            return country
+        else:
+            raise ValueError('cant find country in url')
+
+class FbAdsLibUrlBuilder(FbAdsLibUrl):
     URL = 'https://www.facebook.com/ads/library/'
     MEDIA_TYPES = {
         'all',
@@ -37,7 +67,7 @@ class FbAdsLibUrl:
     def __str__(self):
         escaped_q = quote(str(self.q), safe="")
         params = f'active_status={self.active_status}&ad_type=all&country={self._country.iso}&q={escaped_q}&publisher_platforms[0]=facebook&sort_data[direction]=desc&sort_data[mode]=relevancy_monthly_grouped&start_date[min]={self.start_date}&start_date[max]={self.end_date}&search_type=keyword_unordered&media_type={self.media_type}'
-        return FbAdsLibUrl.URL + '?' + params
+        return FbAdsLibUrlBuilder.URL + '?' + params
 
     def __repr__(self):
         print('FbLibUrl Params')
@@ -63,11 +93,11 @@ class FbAdsLibUrl:
         self._check_media_type_param()
 
     def _check_media_type_param(self):
-        if self.media_type not in FbAdsLibUrl.MEDIA_TYPES:
+        if self.media_type not in FbAdsLibUrlBuilder.MEDIA_TYPES:
             raise ValueError('Incorrect mediaType param')
 
     def _check_active_status(self):
-        if self.active_status not in FbAdsLibUrl.ACTIVE_STATUS_TYPES:
+        if self.active_status not in FbAdsLibUrlBuilder.ACTIVE_STATUS_TYPES:
             raise ValueError('Incorrect active status')
 
 
@@ -76,7 +106,7 @@ def get_random_char_url():
     c = countries.get_random()
     q = get_random_char_keyword()
     media_type = r.choice(['video', 'image'])
-    return FbAdsLibUrl(
+    return FbAdsLibUrlBuilder(
         country=c,
         q=q,
         media_type=media_type,
@@ -92,7 +122,7 @@ def get_random_keyword_url():
     lang = c.get_random_lang()
     q = keyword_db.get_random_key(lang.iso, (1, lang.keys_deep))
     media_type = 'all'  # r.choice(['video', 'image'])
-    url = FbAdsLibUrl(
+    url = FbAdsLibUrlBuilder(
         country=c,
         q=q,
         media_type=media_type,
@@ -101,6 +131,12 @@ def get_random_keyword_url():
         active_status=AdsLib.ADS_STATUS(),
     )
     return url
+
+def get_url_from_string():
+    url_string = input('Enter FbLibUrl')
+    url = FbAdsLibUrlString(url_string)
+    return url
+
 
 
 def get_url():
