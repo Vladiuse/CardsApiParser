@@ -18,7 +18,8 @@ class FbAdsLibParser:
         fbadslib_page = FbAdsLibPage(url, self.proxy)
         fbadslib_page.open()
         for cards in fbadslib_page.parse_cards():
-            log_links(cards, country.iso)
+            # log_links(cards, country.iso)
+            log_links(cards)
             fbadslib_page.forward_cursor = cards.forward_cursor
             fbadslib_page.collation_token = cards.collation_token
             print('*********************\n')

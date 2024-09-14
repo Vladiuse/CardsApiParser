@@ -86,7 +86,7 @@ class FbAdsLibPage:
     def open(self):
         print(repr(self.url))
         url_string = str(self.url)
-        print(url_string)
+        print(url_string, '\t', type(url_string))
         sleep_time = 30
         sleep_time_increase = 60
         res_text = 'noText'
