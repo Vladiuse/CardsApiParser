@@ -58,7 +58,7 @@ class FbAdsLibPage:
     def get_basic_params(html):
         result = dict()
         params_from_search = {
-            'datr': ['"_js_datr","', '"'],
+            'datr': ['"_js_datr":{"value":"', '"'],
             'session_id': ['sessionId":"', '"'],
             'lsd': ['"LSD",[],{"token":"', '"'],
             'hs': ['"haste_session":"', '"'],
