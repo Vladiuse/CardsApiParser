@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 import os
 import random as r
+from config.config import config
 
 curr_file_path = Path(__file__).parent.absolute()
 countries_data_file_path = os.path.join(curr_file_path, './countries.json')
@@ -18,6 +19,13 @@ class Country:
 
     def __repr__(self):
         return f'{self.name} ({self.iso}) '
+
+    def __eq__(self, obj):
+        if isinstance(obj, Country):
+            return self.iso == obj.iso
+        if isinstance(obj, str):
+            return self.iso == obj
+        raise TypeError(f'Cant eq Country with type {type(obj)}')
 
     def __str__(self):
         return self.iso.upper()
@@ -37,6 +45,7 @@ class Country:
                 return lang
         raise ValueError('Язык не выбран')
 
+
 def load_countries():
     with open(countries_data_file_path, encoding='utf-8') as file:
         data = json.load(file)
@@ -44,11 +53,32 @@ def load_countries():
     for iso_code, item in data.items():
         country = Country(iso=iso_code, **item)
         countries[iso_code.upper()] = country
-    return countries
+    return filter_active_countries(countries)
+
+
+def filter_active_countries(items: dict[str, Country]) -> dict[str, Country]:
+    active_iso_codes_line = config.get('AdsLib', 'active_countries').replace(' ', '')
+    if active_iso_codes_line == '':
+        return items
+    active_iso_codes = active_iso_codes_line.split(',')
+
+    # check is iso codes valid
+    for iso_code in active_iso_codes:
+        if iso_code not in items:
+            raise ValueError(f"Incorrect iso code {iso_code} in conf")
+
+    active_countries = {}
+    for country_code, country in items.items():
+        if country.iso in active_iso_codes:
+            active_countries.update({
+                country_code: country,
+            })
+    return active_countries
+
 
 class Language:
 
-    def __init__(self,*, name, iso, weight, keys_deep):
+    def __init__(self, *, name, iso, weight, keys_deep):
         self.name = name
         self.iso = iso
         self.weight = weight

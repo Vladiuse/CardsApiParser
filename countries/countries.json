@@ -668,6 +668,31 @@
             }
         ]
     },
+    "in": {
+        "ru_name": "Индия",
+        "population": 1420942000,
+        "parse_population_conf": 80,
+        "languages": [
+            {
+                "name": "Арабский",
+                "iso": "ar",
+                "weight": 2,
+                "keys_deep": 200
+            },
+            {
+                "name": "Английский",
+                "iso": "en",
+                "weight": 49,
+                "keys_deep": 1000
+            },
+            {
+                "name": "Хинди",
+                "iso": "hi",
+                "weight": 49,
+                "keys_deep": 1000
+            }
+        ]
+    },
     "jp": {
         "ru_name": "Япония",
         "population": 124470000,
