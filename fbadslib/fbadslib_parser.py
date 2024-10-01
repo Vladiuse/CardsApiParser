@@ -33,7 +33,7 @@ class FbAdsLibParser:
                 print(error)
                 sleep(5)
                 self.parsed_pages_count = 0
-            except (EmptyAdsLibResponse, ZeroCardsResponse) as error:
+            except EmptyAdsLibResponse as error:
                 print(error)
                 if self.proxy:
                     self.proxy.change_ip()
@@ -41,6 +41,13 @@ class FbAdsLibParser:
                 else:
                     print(error)
                     parser_dead()
+            except ZeroCardsResponse as error:
+                print(error)
+                if self.proxy:
+                    self.proxy.change_ip()
+                    self.parsed_pages_count = 0
+                else:
+                    print(error)
             except ConnectionError as error:
                 print(error)
                 parser_dead()
